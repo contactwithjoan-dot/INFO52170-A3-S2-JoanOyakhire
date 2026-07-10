@@ -1,4 +1,4 @@
-# calculator.py - Created by Firstname Lastname
+# calculator.py - Created by Joan Oyakhire
 def add(a, b):
     return a + b
 

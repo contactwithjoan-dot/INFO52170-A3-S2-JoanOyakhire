@@ -1,0 +1,61 @@
+# Name of the GitHub Actions workflow
+name: Joan Python CI Workflow
+
+# This workflow will run every time code is pushed
+# to any branch in the repository
+on:
+  push:
+
+# Defines the jobs that will run in this workflow
+jobs:
+
+  # Name of the job
+  python-ci:
+
+    # Uses a GitHub-hoste# Workflow to automatically check my Python project
+name: Joan's Python Project Check
+
+# Run this workflow whenever new code is pushed to the repository
+on:
+  push:
+
+# Jobs that GitHub Actions will perform
+jobs:
+
+  # This job prepares the environment and checks the project
+  project-check:
+    # Use GitHub's latest Ubuntu virtual machine
+    runs-on: ubuntu-latest
+
+    # Steps executed one after another
+    steps:
+
+      # Download the repository so the runner can access the project files
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      # Install the required Python version
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Upgrade pip and install project dependencies if they exist
+      - name: Install project packages
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      # Install the linting tool used to check code quality
+      - name: Install flake8
+        run: pip install flake8
+
+      # Analyze the project for common coding style issues
+      - name: Check code quality
+        run: flake8 .
+
+      # Run all unit tests found in the project
+      - name: Execute unit tests
+        run: python -m unittest discover

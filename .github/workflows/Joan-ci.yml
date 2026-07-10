@@ -12,18 +12,6 @@ jobs:
   # Name of the job
   python-ci:
 
-    # Uses a GitHub-hoste# Workflow to automatically check my Python project
-name: Joan's Python Project Check
-
-# Run this workflow whenever new code is pushed to the repository
-on:
-  push:
-
-# Jobs that GitHub Actions will perform
-jobs:
-
-  # This job prepares the environment and checks the project
-  project-check:
     # Use GitHub's latest Ubuntu virtual machine
     runs-on: ubuntu-latest
 
